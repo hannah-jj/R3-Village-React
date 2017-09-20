@@ -14,17 +14,13 @@ No one can truly wins the game because pollution level increases anytime anyone 
 
 Usage
 
-$ npm install
+$ yarn install
 
-$ npm start
-
-open http://localhost:3000/ in browser
-open rails back-end simultaneously using port 3001
-see instruction on API repo for details
+$ yarn start
 
 Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/hannah11361/R3-Village-Remix. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/hannah11361/R3-Village-React. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 License
 
