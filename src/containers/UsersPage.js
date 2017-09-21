@@ -18,16 +18,7 @@ class UsersPage extends Component {
 		};
 	}
 	componentDidMount(){
-		this.props.actions.fetchUsers('/api/users').then(() => {
-			// let userNum = this.props.users.length;
-			// let i = 0;
-			// let newLikes = [];
-			// for (i = 0; i < userNum; i ++) {
-			// 	newLikes.push(0);
-			// }
-			// this.setState({likes: newLikes});
-		});
-	
+		this.props.actions.fetchUsers('/api/users');
 	}
 
 	mouseOverCallBack(e){
@@ -39,6 +30,7 @@ class UsersPage extends Component {
 		let users = this.props.users;
 		let t = e.target;
 		let index = t.getAttribute('data-key');
+		// eslint-disable-next-line
 		let user = users.find( user => user.id == index);
 		let newLikes = user.likes + 1;
 

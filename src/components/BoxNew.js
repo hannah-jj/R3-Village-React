@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const BoxNew =({items, handleClick}) => {
 	var renderItems = items.map((item, index)=> {

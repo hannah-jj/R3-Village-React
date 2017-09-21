@@ -60,10 +60,10 @@ class RecycleGame extends Component {
 				);
 			});
 
+			var currentGame ="";
+
 			if (games.length > 0) {
-				var currentGame = <div style={{display: 'inline-block'}}><img src={games[0].picture} alt={games[0].name} style={{width: 100, height: 100}}/></div>
-			} else {
-				var currentGame ="";
+				currentGame = <div style={{display: 'inline-block'}}><img src={games[0].picture} alt={games[0].name} style={{width: 100, height: 100}}/></div>
 			}
 
 			return (

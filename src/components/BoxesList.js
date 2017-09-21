@@ -5,7 +5,9 @@ import { Panel, Button } from 'react-bootstrap';
 const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewToy}) => {
 
 	var renderBoxes = boxes.map((box, index) => {
+		// eslint-disable-next-line
 		if (currentClick == index) {
+			// eslint-disable-next-line
 			if (box.name == 'default'){
 				return <div key={index} style={{width: 200}} className='gameBlock'>
 					<Panel header='This box is empty. You can:' bsStyle="success">					
