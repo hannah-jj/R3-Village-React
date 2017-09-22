@@ -109,12 +109,12 @@ class UserShow extends Component {
 		}
 
 		return (
-			<div className='usersContainer'>
-					<h1>Welcome {user.name} <img src={`/avatars/avatar${user.avatar}.png`} style={{width: 50}} alt="avatar" />
-					<strong style={{color: "purple"}}> &hearts; {user.happiness}
-					 &#128465; {user.pollution}</strong> 
-					 </h1>
-					{renderBoxes}
+			<div>
+				<h1>Welcome {user.name} <img src={`/avatars/avatar${user.avatar}.png`} style={{width: 50}} alt="avatar" /></h1>
+				<h2><strong style={{color: "purple"}}> &hearts; {user.happiness}
+				 &#128465; {user.pollution}</strong> 
+				 </h2>
+				{renderBoxes}
 				
 			</div>
 		);
