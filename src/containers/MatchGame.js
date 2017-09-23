@@ -89,7 +89,6 @@ class MatchGame extends Component {
 		const styles = {
 			image: {width: this.state.unit}
 		}
-		console.log(styles.image.width)
 		if (!this.win()) {
 			var renderGames = this.props.games.map((gamePiece, index) => {
 				if (this.state.flipped[index] === false) {

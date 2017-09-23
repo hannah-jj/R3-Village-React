@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Badge from 'material-ui/Badge';
 import * as actions from '../actions/index';
 
 import WinMsg from '../components/winMsg';
@@ -48,6 +49,9 @@ class RecycleGame extends Component {
 
 
 	render(){
+		const styles = {
+			size: 50
+		}
 		if (this.state.count > 0) {
 			var games = this.props.games;
 			var renderGames = games.map((gamePiece, index) => {
@@ -63,12 +67,18 @@ class RecycleGame extends Component {
 			var currentGame ="";
 
 			if (games.length > 0) {
-				currentGame = <div style={{display: 'inline-block'}}><img src={games[0].picture} alt={games[0].name} style={{width: 100, height: 100}}/></div>
+				currentGame = 
+					<h1>Recycle
+					<img src={games[0].picture} alt={games[0].name} style={{width: 100, height: 100}}/>
+					</h1>
 			}
 
 			return (
-			  <div><h1>Recycle {currentGame} count <strong>{this.state.count}</strong></h1>
-				{renderGames}
+			  <div>
+			  	<div>{currentGame}</div>
+				<div style={{position: 'fixed'}}><h1>{this.state.count}</h1></div>
+				<div style={{display: 'inline-block'}}>{renderGames}</div>
+				
 			  </div>
 			);
 
