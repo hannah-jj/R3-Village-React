@@ -20,6 +20,16 @@ class MatchGame extends Component {
 
 	componentWillMount(){
 		this.props.actions.fetchItems();
+
+		let height = window.innerHeight
+	    let width = window.innerWidth
+	    let size = (height < width) ? height * .8 : width * .8
+	    let unit = size / 3
+
+	    this.setState({
+	      unit
+	    })
+
 	}
 
 	updateFlippedArray = (index1, index2 = -1) => {
@@ -76,15 +86,19 @@ class MatchGame extends Component {
 	win = () => {return !this.state.flipped.includes(false)}
 
 	render(){
+		const styles = {
+			image: {width: this.state.unit}
+		}
+		console.log(styles.image.width)
 		if (!this.win()) {
 			var renderGames = this.props.games.map((gamePiece, index) => {
 				if (this.state.flipped[index] === false) {
 				return (<div key={index} className='gameBlock'>
-					<img data-key={index} onClick={this.handleClick} src='/defaults/default.png' alt={gamePiece.name} />
+					<img data-key={index} onClick={this.handleClick} src='/defaults/default.png' alt={gamePiece.name} style={styles.image} />
 				</div>)
 			} else {
 				return (<div key={index} className='gameBlock'>
-					<img data-key={index}  onClick={this.handleClick}  src={gamePiece.picture} alt={gamePiece.name} />
+					<img data-key={index}  onClick={this.handleClick}  src={gamePiece.picture} alt={gamePiece.name} style={styles.image} />
 				</div>)
 			}
 
