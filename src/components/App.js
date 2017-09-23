@@ -18,7 +18,7 @@ const App = (props) =>
 	<Grid><Router>
 		<div>
 		<Row className="show-grid">
-		<Col xs={12}><Navbar>
+		<Col xs={12}><Navbar fixedTop={true}>
         	<Navbar.Header>
         		<Navbar.Brand><a href='/'><ActionHome /></a></Navbar.Brand>
         	<Navbar.Toggle />

@@ -136,5 +136,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);
-
-// <BoxesList boxes={boxes} />
