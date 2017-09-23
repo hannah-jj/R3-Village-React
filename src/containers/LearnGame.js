@@ -38,8 +38,8 @@ class LearnGame extends Component {
 
 		let height = window.innerHeight
 	    let width = window.innerWidth
-	    let size = (height < width) ? height * .8 : width * .8
-	    let unit = size / 4
+	    let cols = (width > 500) ? 8 : 5
+	    let unit = width * .8 / cols
 
 	    this.setState({
 	      unit
@@ -62,21 +62,23 @@ class LearnGame extends Component {
 		if (!this.state.win) {
 			var answers = this.state.answers;
 			const styles = {
-				image: {width: this.state.unit}
+				image: {width: this.state.unit},
+				answer: {fontSize: this.state.unit}
 			}
+			console.log(styles.image.width)
 
 			const renderQ = this.state.qArray.map( (i, index) => {
 				return <img key={index} src='/secret/bumble.jpeg' style={styles.image} alt='bumblebee' />
 			});
 
 			const renderA = this.state.aArray.map( (i, index) => {
-				return <div key={index} data-key={index} className='answerBlock' onClick={this.handleClick}>{answers[i]}</div>
+				return <div key={index} data-key={index} className='answerBlock' style={styles.answer} onClick={this.handleClick}>{answers[i]}</div>
 			});
 
 			return (
 				<div>
 					<h1>{this.state.start}</h1>
-					<div className='learnBlock'>{renderQ}</div>
+					<div>{renderQ}</div>
 					<div>{renderA}</div>
 				</div>
 			)
