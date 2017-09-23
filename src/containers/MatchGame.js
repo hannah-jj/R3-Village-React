@@ -19,7 +19,7 @@ class MatchGame extends Component {
 	}
 
 	componentWillMount(){
-		this.props.actions.fetchItems('/api/items');
+		this.props.actions.fetchItems();
 	}
 
 	updateFlippedArray = (index1, index2 = -1) => {

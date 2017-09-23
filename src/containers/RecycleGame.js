@@ -20,7 +20,7 @@ class RecycleGame extends Component {
 	}
 
 	componentWillMount(){
-		this.props.actions.fetchRItems('/api/ingredients');
+		this.props.actions.fetchRItems();
 	}
 
 	componentWillReceiveProps(nextProps) {

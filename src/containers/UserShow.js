@@ -17,7 +17,7 @@ class UserShow extends Component {
 	}
 
 	componentWillMount(){
-		this.props.actions.fetchToyItems('/api/items');
+		this.props.actions.fetchToyItems();
 		this.props.actions.fetchBoxes(`/api${this.props.match.url}`);
 	}
 
