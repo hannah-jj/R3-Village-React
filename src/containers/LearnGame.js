@@ -35,6 +35,16 @@ class LearnGame extends Component {
 			qArray: arrayMutater.fillArray(num),
 			aArray: arrayMutater.fillArray(4)
 		})
+
+		let height = window.innerHeight
+	    let width = window.innerWidth
+	    let size = (height < width) ? height * .8 : width * .8
+	    let unit = size / 4
+
+	    this.setState({
+	      unit
+	    })
+
 	}
 
 
@@ -51,13 +61,16 @@ class LearnGame extends Component {
 	render(){
 		if (!this.state.win) {
 			var answers = this.state.answers;
+			const styles = {
+				image: {width: this.state.unit}
+			}
 
 			const renderQ = this.state.qArray.map( (i, index) => {
-				return <img key={index} src='/secret/bumble.jpeg' style={{width: 100}} alt='bumblebee' />
+				return <img key={index} src='/secret/bumble.jpeg' style={styles.image} alt='bumblebee' />
 			});
 
 			const renderA = this.state.aArray.map( (i, index) => {
-				return <div key={index} data-key={index} className='answerBlock' onClick={this.handleClick} >{answers[i]}</div>
+				return <div key={index} data-key={index} className='answerBlock' onClick={this.handleClick}>{answers[i]}</div>
 			});
 
 			return (
