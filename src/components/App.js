@@ -26,9 +26,10 @@ const App = (props) =>
         	</Navbar.Header>
         	<Navbar.Collapse>
         		<Nav pullRight>
-        			<NavItem href='/legends'>Icons</NavItem>
         			<NavItem href='/users'>All Villagers</NavItem>
         			<NavItem href='/users/new'>Join Village</NavItem>
+        			<NavItem href='/legends'>Icons</NavItem>
+        			<NavItem href='/Games'>Games</NavItem>
 	            </Nav>
 	        </Navbar.Collapse>    
         </Navbar></Col>
