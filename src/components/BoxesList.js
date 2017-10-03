@@ -75,10 +75,3 @@ BoxesList.defaultProps = {
 };
 
 export default BoxesList;
-
-// <Button bsSize="xsmall" onClick={handleNewToy} >Add a Toy</Button>
-// <Button bsSize="xsmall" ><Link to={'/learnGame'}  onClick={handleAction}>Play</Link></Button>
-
-// <Button bsSize="xsmall"></Button>
-// <Button bsSize="xsmall"><Link to={'/recycleGame'} onClick={handleAction}  data-key={box.box_id}>Recycle</Link></Button>
-// <Button bsSize="xsmall"><Link to={'/Trash'} onClick={handleAction} data-key={box.box_id}>&#128465;</Link></Button>
