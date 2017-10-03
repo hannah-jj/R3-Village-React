@@ -2,7 +2,6 @@ const API_URL = "https://r3api.herokuapp.com";
 
 export default class VillageAPI {
     static getInfo(url) {
-        console.log(API_URL + url);
         return fetch(API_URL + url, {
             method: "GET",
             headers: {
@@ -15,6 +14,7 @@ export default class VillageAPI {
     }
 
     static addInfo(url, info) {
+        console.log(API_URL + url);
         return fetch(API_URL + url, {
             method: "POST",
             headers: {
@@ -28,6 +28,7 @@ export default class VillageAPI {
     }
 
     static updateInfo(url, info) {
+        console.log(API_URL + url);
         return fetch(API_URL + url, {
             method: "PATCH",
             headers: {

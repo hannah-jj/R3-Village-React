@@ -36,7 +36,6 @@ class LearnGame extends Component {
 			aArray: arrayMutater.fillArray(4)
 		})
 
-		let height = window.innerHeight
 	    let width = window.innerWidth
 	    let cols = (width > 500) ? 8 : 5
 	    let unit = width * .8 / cols

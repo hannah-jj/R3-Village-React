@@ -28,7 +28,7 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 						    <FloatingActionButton mini={true} secondary={true} onClick={handleNewToy}>
 									<ContentAdd />
 							</FloatingActionButton>
-							<FloatingActionButton mini={true} primary={true} href='/learnGame' onClick={handleAction}>
+							<FloatingActionButton mini={true} href='/learnGame' onClick={handleAction}>
 									<ActionFavoriteBorder />
 							</FloatingActionButton>
 							</div>}
@@ -42,10 +42,10 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 				return <GridTile key={index} 
 						title={'Reused: ' + box.reuse}
 						subtitle={<div>
-							<FloatingActionButton mini={true} primary={true} href='/matchGame' onClick={handleAction} data-key={box.box_id}>
+							<FloatingActionButton mini={true} href='/matchGame' onClick={handleAction} data-key={box.box_id}>
       							<ActionFavoriteBorder />
     						</FloatingActionButton>
-							<FloatingActionButton mini={true} primary={true} href='/recycleGame' onClick={handleAction} data-key={box.box_id}>
+							<FloatingActionButton mini={true} href='/recycleGame' onClick={handleAction} data-key={box.box_id}>
       							<AvReplay />
     						</FloatingActionButton>
 							<FloatingActionButton mini={true} secondary={true} href='/Trash' onClick={handleAction} data-key={box.box_id}>
