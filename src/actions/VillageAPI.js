@@ -1,4 +1,4 @@
-const API_URL = "http://r3api.herokuapp.com";
+const API_URL = "https://r3api.herokuapp.com";
 
 export default class VillageAPI {
     static getInfo(url) {
