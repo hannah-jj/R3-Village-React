@@ -5,6 +5,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import AvReplay from 'material-ui/svg-icons/av/replay';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 
 const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewToy}) => {
 	const styles = {
@@ -29,7 +30,7 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 									<ContentAdd />
 							</FloatingActionButton>
 							<FloatingActionButton mini={true} href='/learnGame' onClick={handleAction}>
-									<ActionFavoriteBorder />
+									<ActionFavorite />
 							</FloatingActionButton>
 							</div>}
 						titlePosition='bottom'

@@ -6,6 +6,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import RaisedButton from 'material-ui/RaisedButton';
 import UsersPage from '../containers/UsersPage';
 import UsersNew from '../containers/UsersNew';
+import Legends from './Legends';
 import MatchGame from '../containers/MatchGame';
 import RecycleGame from '../containers/RecycleGame';
 import LearnGame from '../containers/LearnGame';
@@ -25,6 +26,7 @@ const App = (props) =>
         	</Navbar.Header>
         	<Navbar.Collapse>
         		<Nav pullRight>
+        			<NavItem href='/legends'>Icons</NavItem>
         			<NavItem href='/users'>All Villagers</NavItem>
         			<NavItem href='/users/new'>Join Village</NavItem>
 	            </Nav>
@@ -36,6 +38,7 @@ const App = (props) =>
 
 				<Route exact path='/users/new' component={UsersNew} />
 				<Route path="/users" component={UsersPage} />
+				<Route path="/legends" component={Legends} />
 				<Route path='/matchGame' component={MatchGame} />
 				<Route path='/recycleGame' component={RecycleGame} />
 				<Route path='/learnGame' component={LearnGame} />
