@@ -29,8 +29,8 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 						    <FloatingActionButton mini={true} secondary={true} onClick={handleNewToy}>
 									<ContentAdd />
 							</FloatingActionButton>
-							<FloatingActionButton mini={true} href='/learnGame' onClick={handleAction}>
-									<ActionFavorite />
+							<FloatingActionButton mini={true}>
+									<a href='/learnGame' onClick={handleAction}><ActionFavorite /></a>
 							</FloatingActionButton>
 							</div>}
 						titlePosition='bottom'
@@ -50,7 +50,7 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
       							<AvReplay />
     						</FloatingActionButton>
 							<FloatingActionButton mini={true} secondary={true} href='/Trash' onClick={handleAction} data-key={box.box_id}>
-								<ContentDeleteSweep />
+								<ContentDeleteSweep  />
 							</FloatingActionButton>
 							</div>}
 			          	titlePosition='bottom'

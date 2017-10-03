@@ -33,7 +33,7 @@ class UserShow extends Component {
 	}
 
 
-	handleActionCallback = e => {
+	handleActionCallback(e) {
 		let t = e.target;
 		let boxId = t.getAttribute('data-key');
 		let actionItem = t.getAttribute('href');
@@ -70,6 +70,7 @@ class UserShow extends Component {
 		this.setState({addToy: true});
 	}
 
+	//backend API will automatically update user Happiness & pollution score when a new box is added
 	handleNewToy(e) {
 		let item_id = e.target.getAttribute('data-key');
 		let user_id = this.props.user.id;
@@ -77,10 +78,10 @@ class UserShow extends Component {
 		
 		this.props.actions.addBox('/api/boxes', {active: true, item_id: item_id, user_id: user_id}).then(
 			()=>{
-				this.setState({addToy: false, currentClick: -1});
-			}
-				);
-		this.props.actions.fetchUsers('/api/users');
+				this.props.actions.fetchUsers('/api/users').then(()=>{ this.setState({addToy: false, currentClick: -1});
+				});
+			});
+		
 		
 	}
 
@@ -90,7 +91,6 @@ class UserShow extends Component {
 		let updatedInfo = { happiness: oldInfo.happiness + h,
 		 pollution: oldInfo.pollution + p};
 		let userUrl = `/api${this.props.match.url}`;
-
 		this.props.actions.updateUser(userUrl, updatedInfo);
 	}
 
