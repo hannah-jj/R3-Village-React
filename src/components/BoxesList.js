@@ -7,7 +7,7 @@ import AvReplay from 'material-ui/svg-icons/av/replay';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 
-const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewToy}) => {
+const BoxesList = ({boxes, handleAction, handleNewToy}) => {
 	const styles = {
 	  root: {
 	    display: 'flex',
@@ -29,8 +29,8 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 						    <FloatingActionButton mini={true} secondary={true} onClick={handleNewToy}>
 									<ContentAdd />
 							</FloatingActionButton>
-							<FloatingActionButton mini={true}>
-									<a href='/learnGame' onClick={handleAction}><ActionFavorite /></a>
+							<FloatingActionButton mini={true} onClick={handleAction} >
+									<ActionFavorite  data-key={box.box_id+'-learnGame-'+index}/>
 							</FloatingActionButton>
 							</div>}
 						titlePosition='bottom'
@@ -43,14 +43,14 @@ const BoxesList = ({handleChange, boxes, currentClick, handleAction, handleNewTo
 				return <GridTile key={index} 
 						title={'Reused: ' + box.reuse}
 						subtitle={<div>
-							<FloatingActionButton mini={true} href='/matchGame' onClick={handleAction} data-key={box.box_id}>
-      							<ActionFavoriteBorder />
+							<FloatingActionButton mini={true} onClick={handleAction} >
+      							<ActionFavoriteBorder  data-key={box.box_id+'-matchGame-'+index} />
     						</FloatingActionButton>
-							<FloatingActionButton mini={true} href='/recycleGame' onClick={handleAction} data-key={box.box_id}>
-      							<AvReplay />
+							<FloatingActionButton mini={true} onClick={handleAction}>
+      							<AvReplay data-key={box.box_id+'-recycleGame-'+index} />
     						</FloatingActionButton>
-							<FloatingActionButton mini={true} secondary={true} href='/Trash' onClick={handleAction} data-key={box.box_id}>
-								<ContentDeleteSweep  />
+							<FloatingActionButton mini={true} secondary={true} onClick={handleAction}>
+								<ContentDeleteSweep data-key={box.box_id+'-Trash-'+index} />
 							</FloatingActionButton>
 							</div>}
 			          	titlePosition='bottom'

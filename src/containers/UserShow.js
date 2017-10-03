@@ -9,11 +9,12 @@ class UserShow extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentClick: -1,
 			addToy: false
 		};
 
-		this.handleClickCallback = this.handleClickCallback.bind(this);
+		this.handleActionCallback = this.handleActionCallback.bind(this);
+		this.newToyCallback = this.newToyCallback.bind(this);
+		this.handleNewToy = this.handleNewToy.bind(this);
 	}
 
 	componentWillMount(){
@@ -27,18 +28,15 @@ class UserShow extends Component {
 		}
 	}
 
-	handleClickCallback(e){
-		let t = e.target;
-		this.setState({currentClick: t.getAttribute('data-key')});
-	}
-
-
+	//handle clicks on action buttons for different scenerios
 	handleActionCallback(e) {
 		let t = e.target;
-		let boxId = t.getAttribute('data-key');
-		let actionItem = t.getAttribute('href');
+		let boxInfo = t.getAttribute('data-key').split('-');
+		let boxId = parseInt(boxInfo[0]);
+		let actionItem = boxInfo[1];
+		let clickedBox = parseInt(boxInfo[2]);
 		//5 different possibilities /learnGame /matchGame /recycleGame /Trash /addToy
-		actionItem = actionItem.substr(1);
+		// actionItem = actionItem.substr(1);
 
 		//p for pollution h for happiness
 		let scores = {
@@ -52,7 +50,7 @@ class UserShow extends Component {
 		this.updateUser(scores[actionItem].h, scores[actionItem].p);
 
 		let updateBoxInfo = {};
-		let clickedBox = this.state.currentClick;
+		
 		if (actionItem === 'recycleGame'){
 			updateBoxInfo = { active: false, recycled: true};
 		} else if (actionItem === 'Trash') {
@@ -66,26 +64,25 @@ class UserShow extends Component {
 		}
 	}
 
+	// update state after user clicking adding new toy to show add Toy UI
 	newToyCallback(e) {
 		this.setState({addToy: true});
 	}
 
+	//add the selected new toy to user's boxes
 	//backend API will automatically update user Happiness & pollution score when a new box is added
 	handleNewToy(e) {
 		let item_id = e.target.getAttribute('data-key');
 		let user_id = this.props.user.id;
-
 		
 		this.props.actions.addBox('/api/boxes', {active: true, item_id: item_id, user_id: user_id}).then(
 			()=>{
-				this.props.actions.fetchUsers('/api/users').then(()=>{ this.setState({addToy: false, currentClick: -1});
+				this.props.actions.fetchUsers('/api/users').then(()=>{ this.setState({addToy: false});
 				});
-			});
-		
-		
+			});	
 	}
 
-	//add to user's happiness and pollution
+	//update user's happiness and pollution per action
 	updateUser(h, p){
 		let oldInfo = this.props.user;
 		let updatedInfo = { happiness: oldInfo.happiness + h,
@@ -100,12 +97,10 @@ class UserShow extends Component {
 		var renderBoxes = <div></div>;
 		if (this.state.addToy === false) {
 			renderBoxes = <BoxesList boxes={boxes} 
-				handleChange={this.handleClickCallback.bind(this)} 
-				handleAction={this.handleActionCallback.bind(this)} 
-				currentClick={this.state.currentClick}
-				handleNewToy={this.newToyCallback.bind(this)}/>
+			handleAction={this.handleActionCallback} 
+			handleNewToy={this.newToyCallback}/>
 		} else {
-			renderBoxes = <BoxNew items={items} handleClick={this.handleNewToy.bind(this)} />
+			renderBoxes = <BoxNew items={items} handleClick={this.handleNewToy} />
 		}
 
 		return (
