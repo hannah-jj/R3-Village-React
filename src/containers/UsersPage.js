@@ -13,43 +13,32 @@ class UsersPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentHover: -1,
-			likes: []
+			fuzzy: [],
+			keyword: ''
 		};
+		this.handleSearchCallBack = this.handleSearchCallBack.bind(this);
 	}
 	componentDidMount(){
-		this.props.actions.fetchUsers('/api/users');
+		this.props.actions.fetchUsers('/api/users').then((res)=>{
+			let fuzzyData = this.props.users.map(user => user.name)
+			this.setState({fuzzy: fuzzyData});
+		});
 	}
 
-	mouseOverCallBack(e){
-		let t = e.target;
-		this.setState({currentHover: t.getAttribute('data-key')});
+	handleSearchCallBack(){
+		let searchTerm = document.querySelector('input').value;
+		this.setState({keyword: searchTerm});
 	}
 
-	likesButtonCallback(e){
-		let users = this.props.users;
-		let t = e.target;
-		let index = t.getAttribute('data-key');
-		// eslint-disable-next-line
-		let user = users.find( user => user.id == index);
-		let newLikes = user.likes + 1;
-
-		let url = `/api/users/${index}`;
-
-		this.props.actions.updateUser(url, {likes: newLikes}).then(
-			()=> this.setState({likes: this.state.likes + 1}));
-		// update the state to trigger re-rendering
-	}
 	render(){
 	  const {match, users} = this.props;
 	  
 	  return(
 		<div>
-			
 			<Switch>
 				<Route path={`${match.url}/new`} component={UsersNew} />
 				<Route path={`${match.url}/:userId`} component={UserShow} />
-				<Route exact path={match.url} render={() => (<UsersList handleLike={this.likesButtonCallback.bind(this)} likes={this.state.likes} users={users} handleHover={this.mouseOverCallBack.bind(this)} currentHover={this.state.currentHover} />)}/>
+				<Route exact path={match.url} render={() => (<UsersList users={users} fuzzy={this.state.fuzzy} keyword={this.state.keyword} handleSearch={this.handleSearchCallBack}/>)}/>
 			</Switch>
 		</div>
 	   )
