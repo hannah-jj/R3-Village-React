@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {GridList, GridTile} from 'material-ui/GridList';
 import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import AvReplay from 'material-ui/svg-icons/av/replay';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';

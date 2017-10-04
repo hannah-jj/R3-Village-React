@@ -23,6 +23,15 @@ class UsersNew extends Component {
 		}
 		this.setState({avatars: avatars});
 
+		let height = window.innerHeight
+	    let width = window.innerWidth
+	    let size = (height < width) ? height * .8 : width * .8
+	    let unit = size / 4
+
+	    this.setState({
+	      unit
+	    })
+
 	}
 
 	handleOnSubmit = event => {
@@ -48,6 +57,9 @@ class UsersNew extends Component {
 	}
 
 	render() {
+		const styles = {
+			image: {width: this.state.unit}
+		}
 
 		if (this.state.redirect === true ) {
 			return (<div><p>New Villager Created<Link style={{ marginRight: '12px' }}
@@ -58,7 +70,7 @@ class UsersNew extends Component {
 			return (
 				// eslint-disable-next-line
 				<div key={index} className={index+1 == this.state.avatar ? 'gameBlock avatarContainer' : 'gameBlock'}>
-					<img data-key={index+1} style={{width: 100}} src={avatar} alt="avatar"  onClick={this.handleHover.bind(this)}/>
+					<img data-key={index+1} style={styles.image} src={avatar} alt="avatar"  onClick={this.handleHover.bind(this)}/>
 				</div>
 			);
 		})

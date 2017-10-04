@@ -4,9 +4,6 @@ import { bindActionCreators } from 'redux';
 import BoxesList from '../components/BoxesList';
 import BoxNew from '../components/BoxNew';
 import * as actions from '../actions/index.js';
-import MatchGame from '../containers/MatchGame';
-import RecycleGame from '../containers/RecycleGame';
-import LearnGame from '../containers/LearnGame';
 
 class UserShow extends Component {
 	constructor(props) {
@@ -25,6 +22,15 @@ class UserShow extends Component {
 	componentWillMount(){
 		this.props.actions.fetchToyItems();
 		this.props.actions.fetchBoxes(`/api${this.props.match.url}`);
+
+		let height = window.innerHeight
+	    let width = window.innerWidth
+	    let size = (height < width) ? height * .8 : width * .8
+	    let unit = size / 3
+
+	    this.setState({
+	      unit
+	    })
 	}
 
 	componentDidUpdate(prevProps){
@@ -116,15 +122,15 @@ class UserShow extends Component {
 			renderBoxes = <div>{this.state.renderGame}</div>
 			debugger;
 		} else {
-			renderBoxes = <BoxNew items={items} handleClick={this.handleNewToy} />
+			renderBoxes = <BoxNew items={items} handleClick={this.handleNewToy} unit={this.state.unit}/>
 		}
 
 		return (
 			<div>
-				<h1>Welcome {user.name} <img src={`/avatars/avatar${user.avatar}.png`} style={{width: 50}} alt="avatar" /></h1>
-				<h2><strong style={{color: "purple"}}> &hearts; {user.happiness}
+				<p>Welcome {user.name} <img src={`/avatars/avatar${user.avatar}.png`} style={{width: 50}} alt="avatar" /></p>
+				<p><strong style={{color: "purple"}}> &hearts; {user.happiness}
 				 &#128465; {user.pollution}</strong> 
-				 </h2>
+				 </p>
 				{renderBoxes}
 				
 			</div>
