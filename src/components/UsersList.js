@@ -1,38 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
-import darkBlack from 'material-ui/styles/colors';
+import {pink300, blue50} from 'material-ui/styles/colors';
 
 const UsersList = ({ users, handleHover, currentHover, handleLike}) => {
 	const sortedUsers =  users.slice().sort((user1, user2) => {
-	  	return user1.likes < user2.likes ? 1 : -1;
+	  	return user1.happiness < user2.happiness ? 1 : -1;
 	  });
+
+	const styles = {
+	  chip: {
+	    margin: 2,
+	  },
+	  wrapper: {
+	    display: 'flex',
+	    flexWrap: 'wrap',
+	  },
+	};
+
 	const renderUsers = sortedUsers.map((user, index) => 
 {	let imgSrc = `/avatars/avatar${user.avatar}.png`;
 
-	return (<div key={user.id} >
-				<ListItem 
-					leftAvatar={<Avatar src={imgSrc} alt="avatar"/>}
-					primaryText={<Link style={{ marginRight: '12px' }}
-					 			to={`/users/${user.id}`}>{user.name}</Link>}
-					secondaryText={
-						<p>
-							<span style={{color:darkBlack}}>Happiness &hearts;{user.happiness} </span>
-							<span style={{color:darkBlack}}>Pollution &#128465; {user.pollution} </span>
-							
-						</p>
-					}
-				/>
-				<Divider inset={true} />
-			</div>)}
+
+	return (<Chip style={styles.chip} key={user.id} backgroundColor={blue50}>
+				<Link to={`/users/${user.id}`}><Avatar src={imgSrc} size={32}/></Link>
+					{user.name} &hearts;{user.happiness} &#128465; {user.pollution}
+				
+			</Chip>
+			)}
 	);
 
 	return (
 		<div>
 				<div><h2>Villagers</h2></div>
-				<div>{renderUsers}</div>
+				<div style={styles.wrapper}>{renderUsers}</div>
 	
 		</div>
 	);
