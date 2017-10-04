@@ -30,7 +30,7 @@ class UsersNew extends Component {
 		let userName = this.state.name;
 		let avatar = this.state.avatar;
 
-		userName = userName === '' ? "guest" : userName;
+		userName = userName === '' ? "guest"+Date.now() : userName;
 		this.props.actions.addUser('/api/users', {name: userName, avatar: avatar});
 		this.setState({redirect: true});
 	}

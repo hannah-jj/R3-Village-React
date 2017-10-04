@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListItem } from 'material-ui/List';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 import {pink300, blue50} from 'material-ui/styles/colors';
