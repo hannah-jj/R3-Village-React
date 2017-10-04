@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {GridList, GridTile} from 'material-ui/GridList';
 import ContentDeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -6,6 +7,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import AvReplay from 'material-ui/svg-icons/av/replay';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import {pink300, blue300} from 'material-ui/styles/colors';
 
 const BoxesList = ({boxes, handleAction, handleNewToy}) => {
 	const styles = {
@@ -26,32 +28,20 @@ const BoxesList = ({boxes, handleAction, handleNewToy}) => {
 				return <GridTile key={index} 
 						title='This box is empty'
 						subtitle={<div>
-						    <FloatingActionButton mini={true} secondary={true} onClick={handleNewToy}>
-									<ContentAdd />
-							</FloatingActionButton>
-							<FloatingActionButton mini={true} onClick={handleAction} >
-									<ActionFavorite  data-key={box.box_id+'-learnGame-'+index}/>
-							</FloatingActionButton>
+							<Link to={'/learnGame'} onClick={handleAction}><ActionFavorite color={blue300}/></Link>
+							<ContentAdd onClick={handleNewToy} color={pink300}/>
 							</div>}
 						titlePosition='bottom'
 						>
 						<img src={box.picture} alt='default'/>
-						
-						
 						</GridTile>
 			} else {
 				return <GridTile key={index} 
 						title={'Reused: ' + box.reuse}
 						subtitle={<div>
-							<FloatingActionButton mini={true} onClick={handleAction} >
-      							<ActionFavoriteBorder  data-key={box.box_id+'-matchGame-'+index} />
-    						</FloatingActionButton>
-							<FloatingActionButton mini={true} onClick={handleAction}>
-      							<AvReplay data-key={box.box_id+'-recycleGame-'+index} />
-    						</FloatingActionButton>
-							<FloatingActionButton mini={true} secondary={true} onClick={handleAction}>
-								<ContentDeleteSweep data-key={box.box_id+'-Trash-'+index} />
-							</FloatingActionButton>
+							<Link to={'/matchGame'} onClick={handleAction}><ActionFavoriteBorder data-key={box.box_id+'-matchGame-'+index} color={blue300} /></Link>
+							<Link to={'/recycleGame'} onClick={handleAction}><AvReplay data-key={box.box_id+'-recycleGame-'+index} color={blue300} /></Link>
+							<Link to={'/Trash'} onClick={handleAction}><ContentDeleteSweep data-key={box.box_id+'-Trash-'+index} color={pink300} /></Link>
 							</div>}
 			          	titlePosition='bottom'
 						>

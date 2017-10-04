@@ -56,6 +56,7 @@ class UsersNew extends Component {
 
 		const renderAvatars = this.state.avatars.map((avatar, index)=>{
 			return (
+				// eslint-disable-next-line
 				<div key={index} className={index+1 == this.state.avatar ? 'gameBlock avatarContainer' : 'gameBlock'}>
 					<img data-key={index+1} style={{width: 100}} src={avatar} alt="avatar"  onClick={this.handleHover.bind(this)}/>
 				</div>

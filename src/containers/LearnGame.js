@@ -50,6 +50,7 @@ class LearnGame extends Component {
 	handleClick = event => {
 		var t = event.target;
 		var clickedAnswer = this.state.answers[t.getAttribute('data-key')];
+		// eslint-disable-next-line
 		if (clickedAnswer == this.state.question) {
 			this.setState({win: true});
 		} else {

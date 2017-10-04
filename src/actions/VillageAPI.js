@@ -28,12 +28,12 @@ export default class VillageAPI {
     }
 
     static updateInfo(url, info) {
+        console.log('updating info')
         console.log(API_URL + url);
         return fetch(API_URL + url, {
             method: "PATCH",
             headers: {
-                'Accepts': 'application/json',
-                'Content-Type': 'application/json'
+                'Accepts': 'application/json'
             },
             body: JSON.stringify(info)
         })

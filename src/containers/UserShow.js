@@ -4,12 +4,17 @@ import { bindActionCreators } from 'redux';
 import BoxesList from '../components/BoxesList';
 import BoxNew from '../components/BoxNew';
 import * as actions from '../actions/index.js';
+import MatchGame from '../containers/MatchGame';
+import RecycleGame from '../containers/RecycleGame';
+import LearnGame from '../containers/LearnGame';
 
 class UserShow extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			addToy: false
+			addToy: false,
+			game: false,
+			renderGame: ''
 		};
 
 		this.handleActionCallback = this.handleActionCallback.bind(this);
@@ -30,14 +35,20 @@ class UserShow extends Component {
 
 	//handle clicks on action buttons for different scenerios
 	handleActionCallback(e) {
+		
 		let t = e.target;
 		let boxInfo = t.getAttribute('data-key').split('-');
-		let boxId = parseInt(boxInfo[0]);
-		let actionItem = boxInfo[1];
-		let clickedBox = parseInt(boxInfo[2]);
-		//5 different possibilities /learnGame /matchGame /recycleGame /Trash /addToy
-		// actionItem = actionItem.substr(1);
+		let boxId = parseInt(boxInfo[0], 10);
 
+		//5 different possibilities /learnGame /matchGame /recycleGame /Trash /addToy
+		let actionItem = boxInfo[1];
+
+		let clickedBox = parseInt(boxInfo[2], 10);
+		
+		if (actionItem !== 'Trash' || actionItem !== 'addToy') {
+			this.setState({game: true});
+		}
+		
 		//p for pollution h for happiness
 		let scores = {
 		 learnGame: {p: 0, h: 5}, //reduce
@@ -47,7 +58,7 @@ class UserShow extends Component {
 		 Trash: {p: 5, h: 0}};
 
 
-		this.updateUser(scores[actionItem].h, scores[actionItem].p);
+		// this.updateUser(scores[actionItem].h, scores[actionItem].p);
 
 		let updateBoxInfo = {};
 		
@@ -57,10 +68,11 @@ class UserShow extends Component {
 			updateBoxInfo = { active: false, trashed: true};
 		} else if (actionItem === 'matchGame') {
 			updateBoxInfo = { reuse: this.props.boxes[clickedBox].reuse + 1};
-		}
+		} 
+
 		let boxUrl = `/api/boxes/${boxId}`;
 		if (actionItem !== 'learnGame') {
-			this.props.actions.updateBox(boxUrl, updateBoxInfo);
+			// this.props.actions.updateBox(boxUrl, updateBoxInfo);
 		}
 	}
 
@@ -95,10 +107,14 @@ class UserShow extends Component {
 		const {boxes, user, items} = this.props;
 
 		var renderBoxes = <div></div>;
+
 		if (this.state.addToy === false) {
 			renderBoxes = <BoxesList boxes={boxes} 
 			handleAction={this.handleActionCallback} 
 			handleNewToy={this.newToyCallback}/>
+		} else if (this.state.game === true){
+			renderBoxes = <div>{this.state.renderGame}</div>
+			debugger;
 		} else {
 			renderBoxes = <BoxNew items={items} handleClick={this.handleNewToy} />
 		}
@@ -117,6 +133,7 @@ class UserShow extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+// eslint-disable-next-line
   const user = state.users.find(user => user.id == ownProps.match.params.userId);
   if(user) {
   	return {user: user, boxes: state.boxes, items: state.games};
